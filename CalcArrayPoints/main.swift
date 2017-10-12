@@ -84,9 +84,79 @@ func subtractPoints(_ p1: (x: Int, y: Int), _ p2: (x: Int, y: Int)) -> (Int, Int
     return (p1.x - p2.x, p1.y - p2.y)
 }
 
+// points as tuples
 var p1 = (x: 4, y: 5)
 var p2 = (x: 4, y: 5)
 print(addPoints(p1, p2))
 print(subtractPoints(p1, p2))
 
+// points as dictionaries
+
+func addPointsD(_ p1: Dictionary<String, Int>, _ p2: Dictionary<String, Int>) -> Dictionary<String, Int> {
+    let x1 = p1["x"] != nil
+    let x2 = p2["x"] != nil
+    let y1 = p1["y"] != nil
+    let y2 = p2["y"] != nil
+    if (x1 && x2 && y1 && y2) {
+        return [
+            "x": p1["x"]! + p2["x"]!,
+            "y": p1["y"]! + p2["y"]!
+        ]
+    } else {
+        return [
+            "x": -100000,
+            "y": -100000
+        ]
+    }
+
+}
+
+
+func subtractPointsD(_ p1: Dictionary<String, Int>, _ p2: Dictionary<String, Int>) -> Dictionary<String, Int> {
+    let x1 = p1["x"] != nil
+    let x2 = p2["x"] != nil
+    let y1 = p1["y"] != nil
+    let y2 = p2["y"] != nil
+    if (x1 && x2 && y1 && y2) {
+        return [
+            "x": p1["x"]! - p2["x"]!,
+            "y": p1["y"]! - p2["y"]!
+        ]
+    } else {
+        return [
+            "x": -100000,
+            "y": -100000
+        ]
+    }
+    
+
+}
+
+
+var p11 = [
+    "x": 4,
+    "y": 10
+]
+var p22 = [
+    "x": 4,
+    "y": 10
+]
+
+print(addPointsD(p11, p22))
+print(subtractPointsD(p11, p22))
+
+
+//func addPointsT(_ points: Int...) -> (Int, Int) {
+//    let x1 = p1.0 != nil
+//    let y1 = p1.1 != nil
+//    let x2 = p2.0 != nil
+//    let y2 = p2.1 != nil
+//    if (x1 && x2 && y1 && y2) {
+//        return (points.0 + points.2, points.1 + points.3)
+//    } else {
+//        return (-100000, -1000000)
+//    }
+//}
+
+print(addPointsT(2, 2, 2), (2, 2, 2))
 
