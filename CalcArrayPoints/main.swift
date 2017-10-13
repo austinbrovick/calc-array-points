@@ -20,17 +20,41 @@ func add (a: Int, b: Int) -> Int {
     return a + b
 }
 
+print(add(4, 4))
+print(add(a:4, b:4))
+
 func subtract (_ a: Int, _ b: Int) -> Int {
     return a - b
 }
+
+func subtract (a: Int, b: Int) -> Int {
+    return a - b
+}
+
+print(subtract(a: 5, b:6))
+print(subtract(5, 6))
 
 func divide (_ a: Int, _ b: Int) -> Double {
     return (1.0*Double(a)) / Double(b)
 }
 
+func divide (a: Int, b: Int) -> Double {
+    return Double(a) / Double(b)
+}
+
+print(divide(10, 5))
+print(divide(a: 10, b:5))
+
 func multiply (_ a: Int, _ b: Int) -> Int {
     return a * b
 }
+
+func multiply (a: Int, b: Int) -> Int {
+    return a * b
+}
+
+print(multiply(10, 5))
+print(multiply(a: 10, b:5))
 
 
 // create a function that expects one of them along with two ints
@@ -38,7 +62,12 @@ func mathOp(_ left : Int, _ right : Int, _ op : (Int, Int) -> Int) -> Int {
     return op(left, right)
 }
 
+func mathOp(left : Int, right : Int, _ op : (Int, Int) -> Int) -> Int {
+    return op(left, right)
+}
+
 print(mathOp(10, 5, add(a:b:)))
+print(mathOp(left:10, right:5, add(a:b:)))
 
 
 
@@ -53,6 +82,14 @@ func add (_ numbers : [Int]) -> Double {
     return Double(sum)
 }
 
+func add (_ numbers : [Double]) -> Double {
+    var sum = 0.0
+    for i in numbers {
+        sum+=i
+    }
+    return sum
+}
+
 //func add (_ numbers : [Int]) -> Int {
 //    var sum = 0
 //    for i in numbers {
@@ -61,13 +98,7 @@ func add (_ numbers : [Int]) -> Double {
 //    return sum
 //}
 
-func add (_ numbers : [Double]) -> Double {
-    var sum = 0.0
-    for i in numbers {
-        sum+=i
-    }
-    return sum
-}
+
 
 
 
@@ -79,14 +110,6 @@ func mul (_ numbers: [Int]) -> Double {
     return Double(sum)
 }
 
-//func mul (_ numbers: [Int]) -> Int {
-//    var sum = 1
-//    for i in numbers {
-//        sum*=i
-//    }
-//    return sum
-//}
-
 func mul (_ numbers: [Double]) -> Double {
     var sum = 1.0
     for i in numbers {
@@ -95,6 +118,13 @@ func mul (_ numbers: [Double]) -> Double {
     return sum
 }
 
+//func mul (_ numbers: [Int]) -> Int {
+//    var sum = 1
+//    for i in numbers {
+//        sum*=i
+//    }
+//    return sum
+//}
 
 
 // create two new functions (count, avg) that take an array if Ints
