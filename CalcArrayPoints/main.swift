@@ -9,8 +9,14 @@
 import Foundation
 
 
+// Build Calculator
+// create four functions for add, subtract, multiply, divide
 
 func add (_ a: Int, _ b: Int) -> Int {
+    return a + b
+}
+
+func add (a: Int, b: Int) -> Int {
     return a + b
 }
 
@@ -27,6 +33,18 @@ func multiply (_ a: Int, _ b: Int) -> Int {
 }
 
 
+// create a function that expects one of them along with two ints
+func mathOp(_ left : Int, _ right : Int, _ op : (Int, Int) -> Int) -> Int {
+    return op(left, right)
+}
+
+print(mathOp(10, 5, add(a:b:)))
+
+
+
+
+// Array fun
+// create two new functions for add/mul
 func add (_ numbers : [Int]) -> Double {
     var sum = 0
     for i in numbers {
@@ -34,6 +52,23 @@ func add (_ numbers : [Int]) -> Double {
     }
     return Double(sum)
 }
+
+//func add (_ numbers : [Int]) -> Int {
+//    var sum = 0
+//    for i in numbers {
+//        sum+=i
+//    }
+//    return sum
+//}
+
+func add (_ numbers : [Double]) -> Double {
+    var sum = 0.0
+    for i in numbers {
+        sum+=i
+    }
+    return sum
+}
+
 
 
 func mul (_ numbers: [Int]) -> Double {
@@ -44,13 +79,54 @@ func mul (_ numbers: [Int]) -> Double {
     return Double(sum)
 }
 
+//func mul (_ numbers: [Int]) -> Int {
+//    var sum = 1
+//    for i in numbers {
+//        sum*=i
+//    }
+//    return sum
+//}
+
+func mul (_ numbers: [Double]) -> Double {
+    var sum = 1.0
+    for i in numbers {
+        sum*=i
+    }
+    return sum
+}
+
+
+
+// create two new functions (count, avg) that take an array if Ints
 func count (_ numbers: [Int]) -> Double {
     return Double(numbers.count)
 }
 
-func avg (_ numbers: [Int]) -> Double {
-    return Double(add(numbers))/Double(count(numbers))
+func count (_ numbers: [Double]) -> Int {
+    return numbers.count
 }
+
+
+func avg (_ numbers: [Int]) -> Double {
+    return Double(add(numbers)) / Double(count(numbers))
+}
+
+func avg (_ numbers: [Double]) -> Double {
+    return Double(add(numbers)) / Double(count(numbers))
+}
+
+
+//let ar : [Int] = [1, 2, 3, 4]
+//print(avg(ar))
+//
+//
+//print(math("multiply", ar))
+//print(subtract(10, 4))
+
+
+
+
+// refactor all down to a generic math operation approach
 
 func math (_ hello: String, _ numbers: [Int]) -> Double {
     if (hello == "count") {
@@ -64,15 +140,21 @@ func math (_ hello: String, _ numbers: [Int]) -> Double {
     } else {
         return 0.0
     }
-    
 }
 
-//let ar : [Int] = [1, 2, 3, 4]
-//print(math("multiply", ar))
-//print(subtract(10, 4))
-
-
-
+func math (_ hello: String, _ numbers: [Double]) -> Double {
+    if (hello == "count") {
+        return Double(count(numbers))
+    } else if (hello == "avg") {
+        return avg(numbers)
+    } else if (hello == "multiply") {
+        return mul(numbers)
+    } else if (hello == "add") {
+        return add(numbers)
+    } else {
+        return 0.0
+    }
+}
 
 
 // Points
@@ -146,17 +228,44 @@ print(addPointsD(p11, p22))
 print(subtractPointsD(p11, p22))
 
 
-//func addPointsT(_ points: Int...) -> (Int, Int) {
-//    let x1 = p1.0 != nil
-//    let y1 = p1.1 != nil
-//    let x2 = p2.0 != nil
-//    let y2 = p2.1 != nil
-//    if (x1 && x2 && y1 && y2) {
-//        return (points.0 + points.2, points.1 + points.3)
-//    } else {
-//        return (-100000, -1000000)
-//    }
-//}
 
-print(addPointsT(2, 2, 2), (2, 2, 2))
+func addPointsD(_ p1: Dictionary<String, Double>, _ p2: Dictionary<String, Double>) -> Dictionary<String, Double> {
+    let x1 = p1["x"] != nil
+    let x2 = p2["x"] != nil
+    let y1 = p1["y"] != nil
+    let y2 = p2["y"] != nil
+    if (x1 && x2 && y1 && y2) {
+        return [
+            "x": p1["x"]! + p2["x"]!,
+            "y": p1["y"]! + p2["y"]!
+        ]
+    } else {
+        return [
+            "x": -100000.0,
+            "y": -100000.0
+        ]
+    }
+}
 
+func subtractPointsD(_ p1: Dictionary<String, Double>, _ p2: Dictionary<String, Double>) -> Dictionary<String, Double> {
+    let x1 = p1["x"] != nil
+    let x2 = p2["x"] != nil
+    let y1 = p1["y"] != nil
+    let y2 = p2["y"] != nil
+    if (x1 && x2 && y1 && y2) {
+        return [
+            "x": p1["x"]! - p2["x"]!,
+            "y": p1["y"]! - p2["y"]!
+        ]
+    } else {
+        return [
+            "x": -100000.0,
+            "y": -100000.0
+        ]
+    }
+}
+
+var a1 = ["x": 44.44, "y": 44.44]
+var a2 = ["x": 44.44, "y": 44.22]
+
+print(subtractPointsD(a1, a2))
